@@ -3,29 +3,32 @@
 #include <vector>
 #include <algorithm>
 
+#include "utils.h"
 #include "sym.h"
 #include "elem.h"
 #include "operator.h"
+#include "contract.h"
 
 using namespace std;
 
 int main() {
 
-  // Elem u1(u, x, a, alpha);
-  // cout << u1.str() << endl;
-  //
-  // Elem G(g5, {alpha, beta});
-  // cout << G.str() << endl;
 
-  // Op pi(3);
-  // pi[0] = Elem(uBar, x, a, alpha);
-  // pi[1] = Elem(g5, {alpha, beta});
-  // pi[2] = Elem(u, x, a, beta);
-  //
-  // cout << pi << endl;
+  // Op pi_x = pion(Sym::x, Sym::d);
+  // Op pi_y = pion(Sym::y, Sym::d);
+  // Term t = pi_x * pi_y;
 
-  cout << pion(Symbol::x) << endl;
+  Op jmu = Jmu(Sym::x, Sym::d);
+  Op jnu = Jnu(Sym::y, Sym::d);
+  Op pi = pion(Sym::z, Sym::d);
+  Term t = jmu * jnu * pi;
   
+
+  // vector<Term> tt = contract(t, Sym::d);
+  vector<Term> tt = contract(t);
+  for(const auto &x: tt) cout << x << endl;
+ 
+
 
 	return 0;
 }

@@ -1,27 +1,52 @@
 #pragma once
 
-int color_counter = 0;
-int spin_counter = 0;
-
-Symbol get_color() {
-  return color_idx[color_counter++];
-}
-
-Symbol get_spin() {
-  return spin_idx[spin_counter++];
-}
-
-
 
 using Op = std::vector<Elem>;
+using Term = std::vector<Elem>;
 
-// FIXME: add d quark
-Op pion(Symbol pos) {
+Op pion(Sym pos, Sym q) {
   Op pi(3);
 
-  Symbol cc = get_color(), ss1 = get_spin(), ss2 = get_spin();
-  pi[0] = Elem(Symbol::uBar, pos, cc, ss1);
-  pi[1] = Elem(Symbol::g5, {ss1, ss2});
-  pi[2] = Elem(Symbol::u, pos, cc, ss2);
+  Sym cc = get_color(), ss1 = get_spin(), ss2 = get_spin();
+  pi[0] = Elem(bar(q), pos, cc, ss1);
+  pi[1] = Elem(Sym::g5, {ss1, ss2});
+  pi[2] = Elem(q, pos, cc, ss2);
   return pi;
+}
+
+Op Jmu(Sym pos, Sym q) {
+  Op pi(3);
+
+  Sym cc = get_color(), ss1 = get_spin(), ss2 = get_spin();
+  pi[0] = Elem(bar(q), pos, cc, ss1);
+  pi[1] = Elem(Sym::gmu, {ss1, ss2});
+  pi[2] = Elem(q, pos, cc, ss2);
+  return pi;
+}
+
+
+Op Jnu(Sym pos, Sym q) {
+  Op pi(3);
+
+  Sym cc = get_color(), ss1 = get_spin(), ss2 = get_spin();
+  pi[0] = Elem(bar(q), pos, cc, ss1);
+  pi[1] = Elem(Sym::gnu, {ss1, ss2});
+  pi[2] = Elem(q, pos, cc, ss2);
+  return pi;
+}
+
+/////////////////////////
+
+std::ostream& operator<<(std::ostream &out, const std::vector<Elem> &vec) {
+  if(vec.empty()) return out;
+  if(vec.back().sym == Sym::minus) out << "- ";
+  for(int i=0; i<vec.size(); ++i) out << vec[i] << " ";
+  // out << vec[vec.size()-1];
+  return out;
+}
+
+std::vector<Elem> operator*(const std::vector<Elem> &ops1, const std::vector<Elem> &ops2) {
+  std::vector<Elem> ret = ops1;
+  ret.insert(ret.end(), ops2.begin(), ops2.end());
+  return ret;
 }
