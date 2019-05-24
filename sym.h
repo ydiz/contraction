@@ -12,7 +12,7 @@
 enum class Sym {u, uBar, d, dBar, s, sBar, 
   a, b, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9,
   alpha, beta, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9,
-  w, x, y, z, g5, gmu, gnu,
+  w, x, y, z, g5, gmu, gnu, gL, gR,
   Pu, Pd, Ps, 
   minus, null};
 
@@ -75,7 +75,8 @@ std::unordered_map<Sym, std::string> symStr = { {Sym::u, "u"}, {Sym::uBar, "uBar
   {Sym::a, "a"}, {Sym::b, "b"}, {Sym::c0, "c0"}, {Sym::c1, "c1"}, {Sym::c2, "c2"}, {Sym::c3, "c3"}, {Sym::c4, "c4"}, {Sym::c5, "c5"}, {Sym::c6, "c6"},{Sym::c7, "c7"}, {Sym::c8, "c8"}, {Sym::c9, "c9"},
   {Sym::alpha, "alpha"}, {Sym::beta, "beta"}, {Sym::s0, "s0"}, {Sym::s1, "s1"}, {Sym::s2, "s2"}, {Sym::s3, "s3"}, {Sym::s4, "s4"}, {Sym::s5, "s5"}, {Sym::s6, "s6"},{Sym::s7, "s7"}, {Sym::s8, "s8"}, {Sym::s9, "s9"},
   {Sym::w, "w"}, {Sym::x, "x"}, {Sym::y, "y"}, {Sym::z, "z"}, 
-  {Sym::g5, "g5"}, {Sym::gmu, "gmu"}, {Sym::gnu, "gnu"}, {Sym::Pu, "Pu"}, {Sym::Pd, "Pd"}, {Sym::Ps, "Ps"},
+  {Sym::g5, "g5"}, {Sym::gmu, "gmu"}, {Sym::gnu, "gnu"}, {Sym::gL, "gL"}, {Sym::gR, "gR"}, 
+  {Sym::Pu, "Pu"}, {Sym::Pd, "Pd"}, {Sym::Ps, "Ps"},
   {Sym::minus, ""}}; // minus is just to mark if a Term or Op is negative; do not print it out
 
 
