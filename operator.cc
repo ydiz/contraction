@@ -83,47 +83,63 @@ Op K0(Sym pos) {
   return K;
 }
 
-Op Jmu(Sym pos, Sym q) {
+Op Jmu(Sym pos) {
   Op J;
-  J.resize(1);
+  J.resize(3);
 
   Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
 
   Term &term1 = J[0];
+  term1.coef = 2./3.;
   term1.resize(3);
-  term1[0] = Elem(bar(q), pos, c, s1);
+  term1[0] = Elem(Sym::uBar, pos, c, s1);
   term1[1] = Elem(Sym::gmu, {s1, s2});
-  term1[2] = Elem(q, pos, c, s2);
+  term1[2] = Elem(Sym::u, pos, c, s2);
+
+  Term &term2 = J[1];
+  term2.coef = -1./3.;
+  term2.resize(3);
+  term2[0] = Elem(Sym::dBar, pos, c, s1);
+  term2[1] = Elem(Sym::gmu, {s1, s2});
+  term2[2] = Elem(Sym::d, pos, c, s2);
+
+  Term &term3 = J[2];
+  term3.coef = -1./3.;
+  term3.resize(3);
+  term3[0] = Elem(Sym::sBar, pos, c, s1);
+  term3[1] = Elem(Sym::gmu, {s1, s2});
+  term3[2] = Elem(Sym::s, pos, c, s2);
   return J;
 }
 
-
-
-Op Jnu(Sym pos, Sym q) {
+Op Jnu(Sym pos) {
   Op J;
-  J.resize(1);
+  J.resize(3);
 
   Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
 
   Term &term1 = J[0];
+  term1.coef = 2./3.;
   term1.resize(3);
-  term1[0] = Elem(bar(q), pos, c, s1);
+  term1[0] = Elem(Sym::uBar, pos, c, s1);
   term1[1] = Elem(Sym::gnu, {s1, s2});
-  term1[2] = Elem(q, pos, c, s2);
+  term1[2] = Elem(Sym::u, pos, c, s2);
+
+  Term &term2 = J[1];
+  term2.coef = -1./3.;
+  term2.resize(3);
+  term2[0] = Elem(Sym::dBar, pos, c, s1);
+  term2[1] = Elem(Sym::gnu, {s1, s2});
+  term2[2] = Elem(Sym::d, pos, c, s2);
+
+  Term &term3 = J[2];
+  term3.coef = -1./3.;
+  term3.resize(3);
+  term3[0] = Elem(Sym::sBar, pos, c, s1);
+  term3[1] = Elem(Sym::gnu, {s1, s2});
+  term3[2] = Elem(Sym::s, pos, c, s2);
   return J;
 }
-
-
-//
-// Op Jnu(Sym pos, Sym q) {
-//   Op pi(3);
-//
-//   Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
-//   pi[0] = Elem(bar(q), pos, c, s1);
-//   pi[1] = Elem(Sym::gnu, {s1, s2});
-//   pi[2] = Elem(q, pos, c, s2);
-//   return pi;
-// }
 
 
 Op Q1(Sym pos) {
@@ -134,6 +150,7 @@ Op Q1(Sym pos) {
   Sym s1 = get_spin(), s2 = get_spin(), s3 = get_spin(), s4 = get_spin();
 
   Term &term1 = q1[0];
+  term1.coef = 1.;
   term1.resize(6);
   term1[0] = Elem(Sym::sBar, pos, c1, s1);
   term1[1] = Elem(Sym::gL, {s1, s2});

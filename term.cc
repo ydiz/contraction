@@ -1,12 +1,28 @@
 #include "defs.h"
 
-// using Term = std::vector<Elem>;
+
+// struct Term : public std::vector<Elem> {
+//
+//   double coef;
+//   Term() : coef(1.0) {}
+// };
+
+Term operator*(const Term &term1, const Term &term2) {
+
+  Term ret = term1;
+  ret.coef *= term2.coef;
+  ret.insert(ret.end(), term2.begin(), term2.end());
+
+  return ret;
+}
 
 std::ostream& operator<<(std::ostream &out, const Term &term) {
   if(term.empty()) return out;
   
-  out << term.coef << " ";
-  // if(term.back().sym == Sym::minus) out << "- ";
+  if(term.coef==1.) ;
+  else if(term.coef==-1.) out << "- ";
+  else out << term.coef << " ";
+
   for(int i=0; i<term.size(); ++i) out << term[i] << " ";
   return out;
 }
@@ -17,44 +33,5 @@ std::ostream& operator<<(std::ostream &out, const std::vector<Term> &terms) {
   return out;
 }
 
-Term operator*(const Term &ops1, const Term &ops2) {
-
-  Term ret = ops1;
-  ret.coef *= ops2.coef;
-  ret.insert(ret.end(), ops2.begin(), ops2.end());
-
-  return ret;
-}
-
-// Term operator*(const Term &ops1, const Term &ops2) {
-//   int hasMinus=1;
-//   Term ops1_cp = ops1;
-//   Term ops2_cp = ops2;
-//   if(ops1_cp.back().sym==Sym::minus) {
-//     hasMinus *= -1;
-//     ops1_cp.pop_back();
-//   }
-//   if(ops2_cp.back().sym==Sym::minus) {
-//     hasMinus *= -1;
-//     ops2_cp.pop_back();
-//   }
-//
-//   Term ret = ops1_cp;
-//   ret.insert(ret.end(), ops2_cp.begin(), ops2_cp.end());
-//
-//   if(hasMinus == -1) ret.push_back(Sym::minus);
-//   return ret;
-// }
 
 
-// // positive -> negative; negative -> positive
-// void changeSign(Term &term) {
-//       if(term.back().sym != Sym::minus) term.push_back(Elem(Sym::minus)); // minus is at the rear and thus does not affect positions of q and qBar
-//       else term.pop_back();
-// }
-//
-// // if the termm has a minus sign
-// bool hasMinus(const Term &term) {
-//   if(term.back().sym == Sym::minus) return true;
-//   else return false;
-// }

@@ -194,7 +194,7 @@ std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnecte
     vector<Term> t = contract(term, allowDisconnected);
     ret.insert(ret.end(), t.begin(), t.end());
 
-    if(verbose) {
+    if(verbose && !t.empty()) {
       cout << std::string(30, '-') << endl;
       cout << "Term: " << term << endl;
       cout << endl;

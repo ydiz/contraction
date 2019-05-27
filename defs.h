@@ -12,7 +12,6 @@
 
 int factorial(int n);
 
-
 // sym.cc
 
 enum class Sym {u, uBar, d, dBar, s, sBar, 
@@ -51,17 +50,14 @@ struct Elem {
 std::ostream& operator<<(std::ostream &out, const Elem &e);
 
 // terms.cc
-// using Term = std::vector<Elem>;
 struct Term : public std::vector<Elem> {
 
   double coef;
   Term() : coef(1.0) {}
 };
 
-// bool hasMinus(const Term &term);
-// void changeSign(Term &term);
 
-Term operator*(const Term &ops1, const Term &ops2);
+Term operator*(const Term &term1, const Term &term2);
 std::ostream& operator<<(std::ostream &out, const Term &term);
 std::ostream& operator<<(std::ostream &out, const std::vector<Term> &terms);
 
@@ -75,8 +71,10 @@ std::ostream& operator<<(std::ostream &out, const Op &op);
 
 Op Pi0(Sym pos);
 Op K0(Sym pos);
-Op Jmu(Sym pos, Sym q);
-Op Jnu(Sym pos, Sym q);
+// Op Jmu(Sym pos, Sym q);
+// Op Jnu(Sym pos, Sym q);
+Op Jmu(Sym pos);
+Op Jnu(Sym pos);
 Op Q1(Sym pos);
 
 
