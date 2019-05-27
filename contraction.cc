@@ -13,8 +13,8 @@ using namespace std;
 
 int main() {
 
-  bool allowDisconnected = false; // display disconnected diagram or not
-  // bool allowDisconnected = true; // display disconnected diagram or not
+  // bool allowDisconnected = false; // display disconnected diagram or not
+  bool allowDisconnected = true; // display disconnected diagram or not
 
   // Op pi_x = Pion(Sym::x, Sym::d);
   // Op pi_y = Pion(Sym::y, Sym::d);
@@ -25,10 +25,10 @@ int main() {
   // Op pi = Pion(Sym::z, Sym::u);
   // Term t = jmu * jnu * pi;
 
-  Op jmu = Jmu(Sym::x, Sym::u);
-  Op jnu = Jnu(Sym::y, Sym::u);
-  Op q1 = Q1(Sym::w);
-  Op k = Kaon(Sym::z);
+  Op jmu = Jmu(Sym::u, Sym::u);
+  Op jnu = Jnu(Sym::v, Sym::u);
+  Op q1 = Q1(Sym::x);
+  Op k = Kaon(Sym::y);
   Term t = jmu * jnu * q1 * k;
 
   // vector<Term> tt = contract(t, Sym::d);
