@@ -51,29 +51,33 @@ struct Elem {
 std::ostream& operator<<(std::ostream &out, const Elem &e);
 
 // terms.cc
+// using Term = std::vector<Elem>;
 using Term = std::vector<Elem>;
 bool hasMinus(const Term &term);
 void changeSign(Term &term);
 
-std::ostream& operator<<(std::ostream &out, const Term &vec);
 Term operator*(const Term &ops1, const Term &ops2);
+std::ostream& operator<<(std::ostream &out, const Term &term);
+std::ostream& operator<<(std::ostream &out, const std::vector<Term> &terms);
 
 // operator.cc
-struct Op : public std::vector<Term> {};
+struct Op : public std::vector<Term> {}; // to distinguish between Op and vector<Term>
 
+std::vector<Term> operator*(const Op &op1, const Op &op2);
+std::vector<Term> operator*(const std::vector<Term> &terms, const Op &op);
+std::vector<Term> operator*(const Op &op, const std::vector<Term> &terms);
 std::ostream& operator<<(std::ostream &out, const Op &op);
 
 Op Pi0(Sym pos);
-// Op Kaon(Sym pos);
-// Op Jmu(Sym pos, Sym q);
-// Op Jnu(Sym pos, Sym q);
-// Op Q1(Sym pos);
+Op K0(Sym pos);
+Op Jmu(Sym pos, Sym q);
+Op Jnu(Sym pos, Sym q);
+Op Q1(Sym pos);
 
-
-// void printOp(const Op &op);
 
 // contract.cc
 std::vector<Term> contract(const Term &term, bool allowDisconnected = false);
+std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnected = false, bool verbose = false);
 
 
 /////////////////////////////////////////////////

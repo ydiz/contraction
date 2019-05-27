@@ -46,7 +46,7 @@ Sym get_color() {
 }
 
 Sym get_spin() {
-  assert(color_counter <= 10);
+  assert(spin_counter <= 10);
   return spin_idx[spin_counter++];
 }
 

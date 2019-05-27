@@ -182,3 +182,24 @@ std::vector<Term> contract(const Term &term, bool allowDisconnected /* = false *
 
   return ret_u;
 }
+
+
+
+std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnected/* = false */, bool verbose/* = false */) {
+  using namespace std;
+  vector<Term> ret;
+  for(const auto &term: terms) {
+
+    vector<Term> t = contract(term, allowDisconnected);
+    ret.insert(ret.end(), t.begin(), t.end());
+
+    if(verbose) {
+      cout << std::string(30, '-') << endl;
+      cout << "Term: " << term << endl;
+      cout << endl;
+      cout << "Contractions: " << endl;
+      cout << t << endl;
+    }
+  }
+  return ret;
+}
