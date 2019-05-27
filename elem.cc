@@ -1,20 +1,4 @@
-#pragma once
-
-#include "sym.h"
-
-struct Elem {
-  Sym sym;
-  std::vector<Sym> pos;
-  std::vector<Sym> color;
-  std::vector<Sym> spin;
-
-  Elem();
-  Elem(Sym _sym);
-  Elem(Sym _sym, Sym _pos, Sym _color, Sym _spin); // for quark
-  Elem(Sym _sym, std::vector<Sym> _spin); // for gamma matrix
-  Elem(Sym _sym, std::vector<Sym> _pos, std::vector<Sym> _color, std::vector<Sym> _spin); // for propagator
-  std::string str() const; // string representation
-};
+#include "defs.h"
 
 Elem::Elem() {}
 
@@ -37,17 +21,11 @@ std::string Elem::str() const {
   return ret;
 }
 
-
-
-
 /////////////////////////////////////////////////
 
 std::ostream& operator<<(std::ostream &out, const Elem &e) {
   out << e.str(); 
   return out;
 }
-
-
-
 
 

@@ -1,8 +1,4 @@
-#pragma once
-
-
-using Op = std::vector<Elem>;
-using Term = std::vector<Elem>;
+#include "defs.h"
 
 Op Pion(Sym pos, Sym q) {
   Op pi(3);
@@ -35,7 +31,6 @@ Op Jmu(Sym pos, Sym q) {
   return pi;
 }
 
-
 Op Jnu(Sym pos, Sym q) {
   Op pi(3);
 
@@ -63,20 +58,3 @@ Op Q1(Sym pos) {
   return q1;
 }
 
-
-
-/////////////////////////
-
-std::ostream& operator<<(std::ostream &out, const std::vector<Elem> &vec) {
-  if(vec.empty()) return out;
-  if(vec.back().sym == Sym::minus) out << "- ";
-  for(int i=0; i<vec.size(); ++i) out << vec[i] << " ";
-  // out << vec[vec.size()-1];
-  return out;
-}
-
-std::vector<Elem> operator*(const std::vector<Elem> &ops1, const std::vector<Elem> &ops2) {
-  std::vector<Elem> ret = ops1;
-  ret.insert(ret.end(), ops2.begin(), ops2.end());
-  return ret;
-}
