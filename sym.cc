@@ -54,7 +54,8 @@ Sym get_spin() {
 // For displaying variables
 
 
-static std::unordered_map<Sym, std::string> symStr = { {Sym::u, "u"}, {Sym::uBar, "uBar"},  
+static std::unordered_map<Sym, std::string> symStr = { 
+  {Sym::u, "u"}, {Sym::uBar, "uBar"}, {Sym::d, "d"}, {Sym::dBar, "dBar"}, {Sym::s, "s"}, {Sym::sBar, "sBar"},
   {Sym::a, "a"}, {Sym::b, "b"}, {Sym::c0, "c0"}, {Sym::c1, "c1"}, {Sym::c2, "c2"}, {Sym::c3, "c3"}, {Sym::c4, "c4"}, {Sym::c5, "c5"}, {Sym::c6, "c6"},{Sym::c7, "c7"}, {Sym::c8, "c8"}, {Sym::c9, "c9"},
   {Sym::alpha, "alpha"}, {Sym::beta, "beta"}, {Sym::s0, "s0"}, {Sym::s1, "s1"}, {Sym::s2, "s2"}, {Sym::s3, "s3"}, {Sym::s4, "s4"}, {Sym::s5, "s5"}, {Sym::s6, "s6"},{Sym::s7, "s7"}, {Sym::s8, "s8"}, {Sym::s9, "s9"},
   {Sym::w, "w"}, {Sym::x, "x"}, {Sym::y, "y"}, {Sym::z, "z"}, {Sym::v, "v"},
