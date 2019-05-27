@@ -59,14 +59,18 @@ std::ostream& operator<<(std::ostream &out, const Term &vec);
 Term operator*(const Term &ops1, const Term &ops2);
 
 // operator.cc
-using Op = std::vector<Elem>;
+struct Op : public std::vector<Term> {};
 
-Op Pion(Sym pos, Sym q);
-Op Kaon(Sym pos);
-Op Jmu(Sym pos, Sym q);
-Op Jnu(Sym pos, Sym q);
-Op Q1(Sym pos);
+std::ostream& operator<<(std::ostream &out, const Op &op);
 
+Op Pi0(Sym pos);
+// Op Kaon(Sym pos);
+// Op Jmu(Sym pos, Sym q);
+// Op Jnu(Sym pos, Sym q);
+// Op Q1(Sym pos);
+
+
+// void printOp(const Op &op);
 
 // contract.cc
 std::vector<Term> contract(const Term &term, bool allowDisconnected = false);

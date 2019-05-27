@@ -9,8 +9,8 @@ int main() {
   // bool allowDisconnected = false; // display disconnected diagram or not
   bool allowDisconnected = true; // display disconnected diagram or not
 
-  Op pi_x = Pion(Sym::x, Sym::d);
-  Op pi_y = Pion(Sym::y, Sym::d);
+  Op pi_x = Pi0(Sym::x);
+  Op pi_y = Pi0(Sym::y);
   // Term t = pi_x * pi_y;
 
   // Op jmu = Jmu(Sym::x, Sym::u);
