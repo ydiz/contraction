@@ -28,7 +28,6 @@ int main() {
   bool allowDisconnected = true;
   vector<Term> tt = contract(t, allowDisconnected, verbose);
   // cout << tt << endl;
-  // if(tt.empty()) cout << "empty" << endl;
  
 
 

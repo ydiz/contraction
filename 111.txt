@@ -1,0 +1,11 @@
+------------------------------
+Term: uBar(u)_{c0, s0} gmu_{s0,s1} u(u)_{c0, s1} uBar(v)_{c1, s2} gnu_{s2,s3} u(v)_{c1, s3} sBar(x)_{c2, s4} gL_{s4,s5} d(x)_{c2, s5} uBar(x)_{c3, s6} gL_{s6,s7} u(x)_{c3, s7} dBar(y)_{c4, s8} g5_{s8,s9} s(y)_{c4, s9} 
+
+Contractions: 
+gmu_{s0,s1} Pu(u,u)_{c0,c0, s1,s0} gnu_{s2,s3} Pu(v,v)_{c1,c1, s3,s2} gL_{s4,s5} Pd(x,y)_{c2,c4, s5,s8} gL_{s6,s7} Pu(x,x)_{c3,c3, s7,s6} g5_{s8,s9} Ps(y,x)_{c4,c2, s9,s4} 
+- gmu_{s0,s1} Pu(u,u)_{c0,c0, s1,s0} gnu_{s2,s3} Pu(v,x)_{c1,c3, s3,s6} gL_{s4,s5} Pd(x,y)_{c2,c4, s5,s8} gL_{s6,s7} Pu(x,v)_{c3,c1, s7,s2} g5_{s8,s9} Ps(y,x)_{c4,c2, s9,s4}  
+- gmu_{s0,s1} Pu(u,v)_{c0,c1, s1,s2} gnu_{s2,s3} Pu(v,u)_{c1,c0, s3,s0} gL_{s4,s5} Pd(x,y)_{c2,c4, s5,s8} gL_{s6,s7} Pu(x,x)_{c3,c3, s7,s6} g5_{s8,s9} Ps(y,x)_{c4,c2, s9,s4}  
+gmu_{s0,s1} Pu(u,v)_{c0,c1, s1,s2} gnu_{s2,s3} Pu(v,x)_{c1,c3, s3,s6} gL_{s4,s5} Pd(x,y)_{c2,c4, s5,s8} gL_{s6,s7} Pu(x,u)_{c3,c0, s7,s0} g5_{s8,s9} Ps(y,x)_{c4,c2, s9,s4} 
+gmu_{s0,s1} Pu(u,x)_{c0,c3, s1,s6} gnu_{s2,s3} Pu(v,u)_{c1,c0, s3,s0} gL_{s4,s5} Pd(x,y)_{c2,c4, s5,s8} gL_{s6,s7} Pu(x,v)_{c3,c1, s7,s2} g5_{s8,s9} Ps(y,x)_{c4,c2, s9,s4} 
+- gmu_{s0,s1} Pu(u,x)_{c0,c3, s1,s6} gnu_{s2,s3} Pu(v,v)_{c1,c1, s3,s2} gL_{s4,s5} Pd(x,y)_{c2,c4, s5,s8} gL_{s6,s7} Pu(x,u)_{c3,c0, s7,s0} g5_{s8,s9} Ps(y,x)_{c4,c2, s9,s4}  
+

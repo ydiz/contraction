@@ -137,7 +137,8 @@ static std::vector<Term> contract(const Term &term, Sym q_type, bool allowDiscon
 
     // cout << combs[i] << endl;
     // if(isMinus(combs[i], term)) cout << "Minus" << endl;
-    if(isMinus(combs[i], term)) changeSign(ret_i);  // minus is at the rear and thus does not affect positions of q and qBar
+    // if(isMinus(combs[i], term)) changeSign(ret_i);  // minus is at the rear and thus does not affect positions of q and qBar
+    if(isMinus(combs[i], term)) ret_i.coef *= -1.;
 
     for(int j=0; j<qs.size(); ++j) { // iterate over all occurrences of q
       int q_loc = combs[i][j].first; // location of quark

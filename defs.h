@@ -52,9 +52,14 @@ std::ostream& operator<<(std::ostream &out, const Elem &e);
 
 // terms.cc
 // using Term = std::vector<Elem>;
-using Term = std::vector<Elem>;
-bool hasMinus(const Term &term);
-void changeSign(Term &term);
+struct Term : public std::vector<Elem> {
+
+  double coef;
+  Term() : coef(1.0) {}
+};
+
+// bool hasMinus(const Term &term);
+// void changeSign(Term &term);
 
 Term operator*(const Term &ops1, const Term &ops2);
 std::ostream& operator<<(std::ostream &out, const Term &term);
