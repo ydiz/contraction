@@ -1,5 +1,32 @@
 #include "defs.h"
 
+
+void rearrangeSpin(Term &term) {
+  std::cout <<"***: " << term << std::endl;
+  std::cout <<"term size: " << term.size() << std::endl;
+  std::cout <<"back: " << term.back() << std::endl;
+  Sym firstSpin = term[0].spin[0];
+  for(int i=0; i<term.size()-1; ++i) {
+    Sym nextSpin = term[i].spin.back(); // current term must be followed by another term whose first spin is the current term's last spin,
+    if(nextSpin == firstSpin) { // unless spin indices have formed a loop
+      firstSpin = term[i+1].spin.front();
+      continue;
+    }
+    if(term[i+1].spin.front()!=nextSpin) {
+      bool foundIt = false;
+      for(int j=i+1; j<term.size(); ++j) {
+        if(term[j].spin.front() == nextSpin) {
+          foundIt = true;
+          std::swap(term[j], term[i+1]);
+        }
+      }
+      assert(foundIt == true);
+    }
+  }
+  std::cout << "Finished" << std::endl;
+
+}
+
 // Whether the contraction has an overall minus sign
 
 // number of moves to make q followed by qBar -> (u uBar) = Propagator
@@ -191,12 +218,15 @@ std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnecte
   vector<Term> ret;
   for(const auto &term: terms) {
 
+      cout << "Term: " << term << endl;
     vector<Term> t = contract(term, allowDisconnected);
+      // cout << "t: " << t << endl;
+    for(auto &x :t) rearrangeSpin(x); // rearrange the order of Elems such that spin indices are in order
     ret.insert(ret.end(), t.begin(), t.end());
 
     if(verbose && !t.empty()) {
       cout << std::string(30, '-') << endl;
-      cout << "Term: " << term << endl;
+      // cout << "Term: " << term << endl;
       cout << endl;
       cout << "Contractions: " << endl;
       cout << t << endl;

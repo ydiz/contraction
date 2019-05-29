@@ -4,7 +4,7 @@ CXXFLAGS =
 LDFLAGS = 
 LDLIBS =
 
-test: test.o contract.o operator.o term.o elem.o sym.o utils.o 
+test: test.o contract.o operator.o term.o elem.o sym.o utils.o toLatex.o
 
 test.o: test.cc defs.h
 
@@ -19,6 +19,8 @@ elem.o: elem.cc defs.h
 sym.o: sym.cc defs.h
 
 utils.o: utils.cc defs.h
+
+toLatex.o: toLatex.cc defs.h
 
 clean:
 	rm *.o

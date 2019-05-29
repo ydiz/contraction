@@ -23,6 +23,8 @@ enum class Sym {u, uBar, d, dBar, s, sBar,
 
 bool isQuark(Sym sym);
 bool isNotQuark(Sym sym);
+bool isProp(Sym sym);
+Sym propToQuark(Sym prop);
 Sym bar(Sym q);
 Sym prop(Sym q);
 Sym get_color(); // get the next available color index
@@ -76,12 +78,20 @@ Op K0(Sym pos);
 Op Jmu(Sym pos);
 Op Jnu(Sym pos);
 Op Q1(Sym pos);
+Op Q2(Sym pos);
+Op Q3(Sym pos);
+Op Q4(Sym pos);
+Op Q5(Sym pos);
+Op Q6(Sym pos);
+Op Q7(Sym pos);
 
 
 // contract.cc
 std::vector<Term> contract(const Term &term, bool allowDisconnected = false);
 std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnected = false, bool verbose = false);
 
+// toLatex.cc
+void generateLatex(const std::vector<Term> &terms, const std::string &outFile, bool showPDF = true);
 
 /////////////////////////////////////////////////
 // misc

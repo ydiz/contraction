@@ -10,6 +10,17 @@ bool isNotQuark(Sym sym) {
   return !isQuark(sym);
 }
 
+bool isProp(Sym sym) {
+  static std::unordered_set<Sym> props = {Sym::Pu, Sym::Pd, Sym::Ps};
+  if(props.find(sym) != props.end()) return true;
+  else return false;
+}
+
+Sym propToQuark(Sym prop) {
+  static std::unordered_map<Sym, Sym> props = { {Sym::Pu, Sym::u}, {Sym::Pd, Sym::d}, {Sym::Ps, Sym::s} };
+  return props[prop];
+}
+
 
 Sym bar(Sym q) {
   switch(q) {
