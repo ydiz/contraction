@@ -2,7 +2,7 @@
 #include <map>
 
 
-void rearrangeSpin(Term &term) {
+static void rearrangeSpin(Term &term) {
   Sym firstSpin = term[0].spin[0];
   for(int i=0; i<term.size()-1; ++i) {
     Sym nextSpin = term[i].spin.back(); // current term must be followed by another term whose first spin is the current term's last spin,
@@ -26,7 +26,7 @@ void rearrangeSpin(Term &term) {
 
 
 
-void rearrangeColor(Term &term) { // must call rearrangeSpin before calling rearrangeColor.
+static void rearrangeColor(Term &term) { // must call rearrangeSpin before calling rearrangeColor.
   std::vector<int> &delim = term.spinSingletDelimiter;
 
   for(int i=0; i<delim.size() + 1; ++i) { // iterate over spin singlets
@@ -87,7 +87,6 @@ static bool isMinus(const std::vector<std::pair<int, int>> &contractions, const 
     contracted.insert(x.second);
   }
 
-  // cout << total_moves << endl;
   return total_moves % 2 == 1;
 }
 
@@ -255,6 +254,7 @@ std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnecte
       cout << endl;
       cout << "Contractions: " << endl;
       cout << t << endl;
+      // cout << "latex: " << generateLatexMath(t[0]) << endl;
     }
   }
   return ret;

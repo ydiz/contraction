@@ -86,7 +86,6 @@ std::string str(const std::vector<Sym> &syms) {
   std::string ret("");
   if(syms.empty()) return ret;
   else {
-    // std::string ret = "{"
     for(int i=0; i<syms.size()-1; ++i) ret += str(syms[i]) + ",";
     ret += str(syms[syms.size()-1]);
   }

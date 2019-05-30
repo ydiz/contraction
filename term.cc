@@ -6,6 +6,9 @@
 //   double coef;
 //   Term() : coef(1.0) {}
 // };
+//
+
+
 
 Term operator*(const Term &term1, const Term &term2) {
 

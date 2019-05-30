@@ -22,10 +22,10 @@ int main() {
   // std::vector<Term> t = jmu * jnu * q1 * k;
   std::vector<Term> t = jmu * jnu * q2 * k;
 
-  bool verbose = true;
-  // bool verbose = false;
-  // bool allowDisconnected = true;
-  bool allowDisconnected = false;
+  // bool verbose = true;
+  bool verbose = false;
+  bool allowDisconnected = true;
+  // bool allowDisconnected = false;
   vector<Term> tt = contract(t, allowDisconnected, verbose);
 
   generateLatex(tt, "./tmp/tmp.tex");

@@ -92,6 +92,7 @@ std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnecte
 
 // toLatex.cc
 void generateLatex(const std::vector<Term> &terms, const std::string &outFile, bool showPDF = true);
+std::string generateLatexMath(const Term &term);
 
 /////////////////////////////////////////////////
 // misc
