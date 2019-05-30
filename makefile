@@ -1,6 +1,6 @@
 CC = g++ # otherwise linking will automatically will gcc instead of g++ and result in error
 
-CXXFLAGS = 
+CXXFLAGS = -std=c++17
 LDFLAGS = 
 LDLIBS =
 

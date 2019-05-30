@@ -23,7 +23,15 @@ std::ostream& operator<<(std::ostream &out, const Term &term) {
   else if(term.coef==-1.) out << "- ";
   else out << term.coef << " ";
 
-  for(int i=0; i<term.size(); ++i) out << term[i] << " ";
+  if(!term.spinSingletDelimiter.empty()) out << "[ ";
+
+  for(int i=0; i<term.size(); ++i) {
+    if(std::find(term.spinSingletDelimiter.begin(), term.spinSingletDelimiter.end(), i) != term.spinSingletDelimiter.end())
+          out << "] [ ";
+    out << term[i] << " ";
+  }
+
+  if(!term.spinSingletDelimiter.empty()) out << "]";
   return out;
 }
 

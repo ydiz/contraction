@@ -1,31 +1,58 @@
 #include "defs.h"
+#include <map>
 
 
 void rearrangeSpin(Term &term) {
-  std::cout <<"***: " << term << std::endl;
-  std::cout <<"term size: " << term.size() << std::endl;
-  std::cout <<"back: " << term.back() << std::endl;
   Sym firstSpin = term[0].spin[0];
   for(int i=0; i<term.size()-1; ++i) {
     Sym nextSpin = term[i].spin.back(); // current term must be followed by another term whose first spin is the current term's last spin,
     if(nextSpin == firstSpin) { // unless spin indices have formed a loop
+      term.spinSingletDelimiter.push_back(i+1);
       firstSpin = term[i+1].spin.front();
       continue;
     }
     if(term[i+1].spin.front()!=nextSpin) {
-      bool foundIt = false;
+      // bool foundIt = false;
       for(int j=i+1; j<term.size(); ++j) {
         if(term[j].spin.front() == nextSpin) {
-          foundIt = true;
+          // foundIt = true;
           std::swap(term[j], term[i+1]);
         }
       }
-      assert(foundIt == true);
+      // assert(foundIt == true);
     }
   }
-  std::cout << "Finished" << std::endl;
-
 }
+
+
+
+void rearrangeColor(Term &term) { // must call rearrangeSpin before calling rearrangeColor.
+  std::vector<int> &delim = term.spinSingletDelimiter;
+
+  for(int i=0; i<delim.size() + 1; ++i) { // iterate over spin singlets
+    int j_start = (i==0 ? 0 : delim[i-1]); // start of this spin singlet
+    int j_end = (i==delim.size() ? term.size() : delim[i]); // start of next spin singlet
+
+    // find posistion of color indices that appear only once
+    std::map<Sym, int> color_idx;
+    for(int j=j_start; j<j_end; ++j) {
+      for(int c=0; c<term[j].color.size(); ++c) {
+        Sym cur_c = term[j].color[c];
+        if(color_idx.insert(std::make_pair(cur_c, j)).second == false) color_idx.erase(cur_c);
+      }
+    }
+    assert(color_idx.size() == 0 || color_idx.size()==2);
+
+    if(color_idx.size() == 2) {
+      int first_pos;
+      for(auto [c, pos]: color_idx) {
+        if(c == term[pos].color[0]) first_pos = pos;// if color index is the first color index of that propgagtor
+      }
+      std::rotate(term.begin()+j_start, term.begin()+first_pos, term.begin()+j_end); // do rotation
+    }
+  }
+}
+
 
 // Whether the contraction has an overall minus sign
 
@@ -162,9 +189,6 @@ static std::vector<Term> contract(const Term &term, Sym q_type, bool allowDiscon
     ret.push_back(term);
     Term &ret_i = ret.back(); // current contraction
 
-    // cout << combs[i] << endl;
-    // if(isMinus(combs[i], term)) cout << "Minus" << endl;
-    // if(isMinus(combs[i], term)) changeSign(ret_i);  // minus is at the rear and thus does not affect positions of q and qBar
     if(isMinus(combs[i], term)) ret_i.coef *= -1.;
 
     for(int j=0; j<qs.size(); ++j) { // iterate over all occurrences of q
@@ -218,15 +242,16 @@ std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnecte
   vector<Term> ret;
   for(const auto &term: terms) {
 
-      cout << "Term: " << term << endl;
     vector<Term> t = contract(term, allowDisconnected);
-      // cout << "t: " << t << endl;
-    for(auto &x :t) rearrangeSpin(x); // rearrange the order of Elems such that spin indices are in order
+    for(auto &x :t) {
+      rearrangeSpin(x); // rearrange the order of Elems such that spin indices are in order
+      rearrangeColor(x); // rearrange the order of Elems in each spin singlet
+    }
     ret.insert(ret.end(), t.begin(), t.end());
 
     if(verbose && !t.empty()) {
       cout << std::string(30, '-') << endl;
-      // cout << "Term: " << term << endl;
+      cout << "Term: " << term << endl;
       cout << endl;
       cout << "Contractions: " << endl;
       cout << t << endl;

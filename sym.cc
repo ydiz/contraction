@@ -29,7 +29,6 @@ Sym bar(Sym q) {
     case Sym::s : return Sym::sBar;
     default : assert(0);
   }
-  return Sym::null;
 }
 
 Sym prop(Sym q) {
@@ -39,7 +38,6 @@ Sym prop(Sym q) {
     case Sym::s : return Sym::Ps;
     default : assert(0);
   }
-  return Sym::null;
 }
 
 
@@ -71,8 +69,7 @@ static std::unordered_map<Sym, std::string> symStr = {
   {Sym::alpha, "alpha"}, {Sym::beta, "beta"}, {Sym::s0, "s0"}, {Sym::s1, "s1"}, {Sym::s2, "s2"}, {Sym::s3, "s3"}, {Sym::s4, "s4"}, {Sym::s5, "s5"}, {Sym::s6, "s6"},{Sym::s7, "s7"}, {Sym::s8, "s8"}, {Sym::s9, "s9"},
   {Sym::w, "w"}, {Sym::x, "x"}, {Sym::y, "y"}, {Sym::z, "z"}, {Sym::v, "v"},
   {Sym::g5, "g5"}, {Sym::gmu, "gmu"}, {Sym::gnu, "gnu"}, {Sym::gL, "gL"}, {Sym::gR, "gR"}, 
-  {Sym::Pu, "Pu"}, {Sym::Pd, "Pd"}, {Sym::Ps, "Ps"},
-  {Sym::minus, ""}}; // minus is just to mark if a Term or Op is negative; do not print it out
+  {Sym::Pu, "Pu"}, {Sym::Pd, "Pd"}, {Sym::Ps, "Ps"}};
 
 
 std::ostream& operator<<(std::ostream &out, Sym sym) {

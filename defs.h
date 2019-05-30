@@ -18,8 +18,7 @@ enum class Sym {u, uBar, d, dBar, s, sBar,
   a, b, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9,
   alpha, beta, s0, s1, s2, s3, s4, s5, s6, s7, s8, s9,
   w, x, y, z, v, g5, gmu, gnu, gL, gR,
-  Pu, Pd, Ps, 
-  minus, null};
+  Pu, Pd, Ps};
 
 bool isQuark(Sym sym);
 bool isNotQuark(Sym sym);
@@ -55,6 +54,7 @@ std::ostream& operator<<(std::ostream &out, const Elem &e);
 struct Term : public std::vector<Elem> {
 
   double coef;
+  std::vector<int> spinSingletDelimiter; // mark the initial position of a new spin singlet in the contracted expression of propagators if there are multiple spin singlets
   Term() : coef(1.0) {}
 };
 

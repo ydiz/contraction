@@ -11,7 +11,6 @@ Elem::Elem(Sym _sym, std::vector<Sym> _spin) : sym(_sym), spin(_spin) {}
 Elem::Elem(Sym _sym, std::vector<Sym> _pos, std::vector<Sym> _color, std::vector<Sym> _spin) : sym(_sym), pos(_pos), color(_color), spin(_spin) {}
 
 std::string Elem::str() const {
-  if(sym==Sym::minus) return "xxx"; // Sym::minus is used at the end of a term or Op to mark that this term should have a minus sign
 
   std::string ret = ::str(sym);
   if(!pos.empty()) ret += "(" + ::str(pos) + ")";
