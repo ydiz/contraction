@@ -1,5 +1,7 @@
 #include "defs.h"
 #include <map>
+#include <unordered_set>
+#include <set>
 
 
 static void rearrangeSpin(Term &term) {

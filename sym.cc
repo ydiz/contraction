@@ -1,4 +1,6 @@
 #include "defs.h"
+#include <unordered_set>
+#include <unordered_map>
 
 bool isQuark(Sym sym) {
   static std::unordered_set<Sym> quarks = {Sym::u, Sym::d, Sym::s, Sym::uBar, Sym::dBar, Sym::sBar};

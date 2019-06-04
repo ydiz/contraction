@@ -4,11 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <unordered_map>
-#include <unordered_set>
-#include <set>
 #include <assert.h>
-#include <utility>
 
 int factorial(int n);
 
@@ -89,6 +85,11 @@ Op Q7(Sym pos);
 // contract.cc
 std::vector<Term> contract(const Term &term, bool allowDisconnected = false);
 std::vector<Term> contract(const std::vector<Term> &terms, bool allowDisconnected = false, bool verbose = false);
+
+
+// simplify.cc
+void removeJmuSelfConnected(std::vector<Term> &terms);
+void combine_u_d_prop(std::vector<Term> &terms);
 
 // toLatex.cc
 void generateLatex(const std::vector<Term> &terms, const std::string &outFile, bool showPDF = true);
