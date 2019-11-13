@@ -1,0 +1,49 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.0.0}
+\begin{document}
+
+\begin{tikzpicture}
+  \begin{feynman}
+\input{nodes.tex} % input nodes position and text
+\diagram*{
+  {[edges={fermion, half left}]
+    (u) --[edge label=u] (v),
+    (v) --[edge label=u] (x), 
+    (x) --[edge label=s] (y),
+    (x) --[edge label=u] (u),
+    (y) --[edge label=u] (x),
+  },
+
+  % self-connected quark loop
+  {[edges={fermion}]
+    (u)  -- [out=135,in=180] (uu) --[scalar,out=0,in=45] (u)
+  },
+};
+  \end{feynman}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+  \begin{feynman}
+\input{nodes.tex} % input nodes position and text
+\diagram*{
+  {[edges={fermion, half left}]
+    (u) --[edge label=u] (x),
+    (v) --[edge label=u] (u), 
+    (x) --[edge label=s] (y),
+    (x) --[edge label=u] (v),
+    (y) --[edge label=u] (x),
+  },
+
+  % self-connected quark loop
+  {[edges={fermion}]
+    (u)  -- [out=135,in=180] (uu) --[scalar,out=0,in=45] (u)
+  },
+};
+  \end{feynman}
+\end{tikzpicture}
+
+\end{document}
+
+

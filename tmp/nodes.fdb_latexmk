@@ -1,0 +1,11 @@
+# Fdb version 3
+["pdflatex"] 1559078923 "nodes.tex" "nodes.pdf" "nodes" 1559078923
+  "/etc/texmf/web2c/texmf.cnf" 1517116215 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1503024366 32036 8f10cb8f6ef259fb5791f09c065d3d13 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1503024366 32036 8f10cb8f6ef259fb5791f09c065d3d13 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1540249076 863724 d416bcba07909ded475559528665c1f9 ""
+  "nodes.aux" 1559078923 8 a94a2480d3289e625eea47cd1b285758 ""
+  "nodes.tex" 1558915653 729 d4187b0894a26b93c01a1ba9c1c42d8c ""
+  (generated)
+  "nodes.pdf"
+  "nodes.log"

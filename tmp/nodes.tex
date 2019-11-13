@@ -1,0 +1,20 @@
+    % \node [inner sep=0.02cm](u) at (0,0) {\textbullet};
+    % \node (v) at (2,0) {\textbullet};
+    % \node (x) at (4,0) {\textbullet};
+    % \node (y) at (6,0) {\textbullet};
+    \node [inner sep=0.05cm, circle, fill](u) at (6,0) {};
+    \node [inner sep=0.05cm, circle, fill](v) at (4,0) {};
+    \node [inner sep=0.05cm, circle, fill](x) at (2,0) {};
+    \node [inner sep=0.05cm, circle, fill](y) at (0,0) {};
+
+    \draw (u) node[left] {$u$};
+    \draw (v) node[left] {$v$};
+    \draw (x) node[left] {$x$};
+    \draw (y) node[left] {$y$};
+
+    
+    % \node[above = 1cm of u] (uu);
+    \vertex[above = 1cm of u] (uu);
+    \vertex[above = 1cm of v] (vv);
+    \vertex[above = 1cm of x] (xx);
+    \vertex[above = 1cm of y] (yy);

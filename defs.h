@@ -69,17 +69,16 @@ std::ostream& operator<<(std::ostream &out, const Op &op);
 
 Op Pi0(Sym pos);
 Op K0(Sym pos);
+Op K0bar(Sym pos);
 // Op Jmu(Sym pos, Sym q);
 // Op Jnu(Sym pos, Sym q);
 Op Jmu(Sym pos);
 Op Jnu(Sym pos);
 Op Q1(Sym pos);
+Op Q1bar(Sym pos);
 Op Q2(Sym pos);
+Op Q2bar(Sym pos);
 Op Q3(Sym pos);
-Op Q4(Sym pos);
-Op Q5(Sym pos);
-Op Q6(Sym pos);
-Op Q7(Sym pos);
 
 
 // contract.cc

@@ -91,6 +91,22 @@ Op K0(Sym pos) {
   return K;
 }
 
+Op K0bar(Sym pos) {
+  Op K;
+  K.resize(1);
+
+  Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
+
+  Term &term1 = K[0];
+  term1.resize(3);
+  term1[0] = Elem(Sym::sBar, pos, c, s1);
+  term1[1] = Elem(Sym::g5, {s1, s2});
+  term1[2] = Elem(Sym::d, pos, c, s2);
+  return K;
+}
+
+
+
 Op Jmu(Sym pos) {
   Op J;
   J.resize(3);
@@ -170,6 +186,29 @@ Op Q1(Sym pos) {
   return q1;
 }
 
+Op Q1bar(Sym pos) {
+  Op q1;
+  q1.resize(1);
+
+  Sym c1 = get_color(), c2 = get_color();
+  Sym s1 = get_spin(), s2 = get_spin(), s3 = get_spin(), s4 = get_spin();
+
+  Term &term1 = q1[0];
+  term1.coef = 1.;
+  term1.resize(6);
+  term1[0] = Elem(Sym::dBar, pos, c1, s1);
+  term1[1] = Elem(Sym::gL, {s1, s2});
+  term1[2] = Elem(Sym::s, pos, c1, s2);
+
+  term1[3] = Elem(Sym::uBar, pos, c2, s3);
+  term1[4] = Elem(Sym::gL, {s3, s4});
+  term1[5] = Elem(Sym::u, pos, c2, s4);
+  return q1;
+}
+
+
+
+
 Op Q2(Sym pos) {
   Op q2;
   q2.resize(1);
@@ -189,6 +228,28 @@ Op Q2(Sym pos) {
   term1[5] = Elem(Sym::u, pos, c1, s4);
   return q2;
 }
+
+
+Op Q2bar(Sym pos) {
+  Op q2;
+  q2.resize(1);
+
+  Sym c1 = get_color(), c2 = get_color();
+  Sym s1 = get_spin(), s2 = get_spin(), s3 = get_spin(), s4 = get_spin();
+
+  Term &term1 = q2[0];
+  term1.coef = 1.;
+  term1.resize(6);
+  term1[0] = Elem(Sym::dBar, pos, c1, s1);
+  term1[1] = Elem(Sym::gL, {s1, s2});
+  term1[2] = Elem(Sym::s, pos, c2, s2);
+
+  term1[3] = Elem(Sym::uBar, pos, c2, s3);
+  term1[4] = Elem(Sym::gL, {s3, s4});
+  term1[5] = Elem(Sym::u, pos, c1, s4);
+  return q2;
+}
+
 
 
 
