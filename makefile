@@ -4,9 +4,9 @@ CXXFLAGS = -std=c++17
 LDFLAGS = 
 LDLIBS =
 
-test: test.o simplify.o contract.o operator.o term.o elem.o sym.o utils.o toLatex.o
+main: main.o simplify.o contract.o operator.o term.o elem.o sym.o utils.o toLatex.o
 
-test.o: test.cc defs.h
+main.o: main.cc defs.h
 
 simplify.o: simplify.cc defs.h
 

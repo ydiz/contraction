@@ -1,4 +1,5 @@
 #include "defs.h"
+#include "cmath"
 
 // struct Op : public std::vector<Term> {};
 
@@ -76,8 +77,76 @@ Op Pi0(Sym pos) {
   return pi;
 }
 
+Op UBar_g5_u(Sym pos) {
+  Op ubar_u;
+  ubar_u.resize(1); // (ubar g5 u) has one terms
 
-Op K0(Sym pos) {
+  Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
+
+  Term &term1 = ubar_u[0];
+  term1.coef = 1.;
+  term1.resize(3);
+  term1[0] = Elem(Sym::uBar, pos, c, s1);
+  term1[1] = Elem(Sym::g5, {s1, s2});
+  term1[2] = Elem(Sym::u, pos, c, s2);
+  return ubar_u;
+}
+
+Op DBar_g5_d(Sym pos) {
+  Op dbar_d;
+  dbar_d.resize(1); // (dbar g5 d) has one terms
+
+  Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
+
+  Term &term1 = dbar_d[0];
+  term1.coef = 1.;
+  term1.resize(3);
+  term1[0] = Elem(Sym::dBar, pos, c, s1);
+  term1[1] = Elem(Sym::g5, {s1, s2});
+  term1[2] = Elem(Sym::d, pos, c, s2);
+  return dbar_d;
+}
+
+
+
+
+
+
+
+
+Op Eta(Sym pos) {
+  Op eta;
+  eta.resize(3); // Pi0 has two terms
+
+  Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
+
+  Term &term1 = eta[0];
+  term1.coef = 1. / std::sqrt(6);
+  term1.resize(3);
+  term1[0] = Elem(Sym::uBar, pos, c, s1);
+  term1[1] = Elem(Sym::g5, {s1, s2});
+  term1[2] = Elem(Sym::u, pos, c, s2);
+
+  Term &term2 = eta[1];
+  term2.coef = 1. / std::sqrt(6);
+  term2.resize(3);
+  term2[0] = Elem(Sym::dBar, pos, c, s1);
+  term2[1] = Elem(Sym::g5, {s1, s2});
+  term2[2] = Elem(Sym::d, pos, c, s2);
+
+  Term &term3 = eta[2];
+  term3.coef = - 2. / std::sqrt(6);
+  term3.resize(3);
+  term3[0] = Elem(Sym::sBar, pos, c, s1);
+  term3[1] = Elem(Sym::g5, {s1, s2});
+  term3[2] = Elem(Sym::s, pos, c, s2);
+  return eta;
+}
+
+
+
+
+Op K0(Sym pos) { // dBar gamma5 s
   Op K;
   K.resize(1);
 
@@ -91,13 +160,15 @@ Op K0(Sym pos) {
   return K;
 }
 
-Op K0bar(Sym pos) {
+Op K0bar(Sym pos) { // sBar gamma5 d
   Op K;
   K.resize(1);
 
   Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
 
   Term &term1 = K[0];
+  // term1.coef = -1.; // Note: Fixed 03.16.2021. K0bar does not have minus sign
+  term1.coef = 1.; 
   term1.resize(3);
   term1[0] = Elem(Sym::sBar, pos, c, s1);
   term1[1] = Elem(Sym::g5, {s1, s2});
@@ -105,6 +176,78 @@ Op K0bar(Sym pos) {
   return K;
 }
 
+
+Op sBar_d(Sym pos) {
+  Op sd;
+  sd.resize(1);
+
+  Sym c = get_color(), s1 = get_spin();
+
+  Term &term1 = sd[0];
+  term1.resize(2);
+  term1[0] = Elem(Sym::sBar, pos, c, s1);
+  term1[1] = Elem(Sym::d, pos, c, s1);
+  return sd;
+}
+
+Op dBar_s(Sym pos) {
+  Op ds;
+  ds.resize(1);
+
+  Sym c = get_color(), s1 = get_spin();
+
+  Term &term1 = ds[0];
+  term1.resize(2);
+  term1[0] = Elem(Sym::dBar, pos, c, s1);
+  term1[1] = Elem(Sym::s, pos, c, s1);
+  return ds;
+}
+
+Op Jmu_no_s(Sym pos) {
+  Op J;
+  J.resize(2);
+
+  Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
+
+  Term &term1 = J[0];
+  term1.coef = 2./3.;
+  term1.resize(3);
+  term1[0] = Elem(Sym::uBar, pos, c, s1);
+  term1[1] = Elem(Sym::gmu, {s1, s2});
+  term1[2] = Elem(Sym::u, pos, c, s2);
+
+  Term &term2 = J[1];
+  term2.coef = -1./3.;
+  term2.resize(3);
+  term2[0] = Elem(Sym::dBar, pos, c, s1);
+  term2[1] = Elem(Sym::gmu, {s1, s2});
+  term2[2] = Elem(Sym::d, pos, c, s2);
+
+  return J;
+}
+
+Op Jnu_no_s(Sym pos) {
+  Op J;
+  J.resize(2);
+
+  Sym c = get_color(), s1 = get_spin(), s2 = get_spin();
+
+  Term &term1 = J[0];
+  term1.coef = 2./3.;
+  term1.resize(3);
+  term1[0] = Elem(Sym::uBar, pos, c, s1);
+  term1[1] = Elem(Sym::gnu, {s1, s2});
+  term1[2] = Elem(Sym::u, pos, c, s2);
+
+  Term &term2 = J[1];
+  term2.coef = -1./3.;
+  term2.resize(3);
+  term2[0] = Elem(Sym::dBar, pos, c, s1);
+  term2[1] = Elem(Sym::gnu, {s1, s2});
+  term2[2] = Elem(Sym::d, pos, c, s2);
+
+  return J;
+}
 
 
 Op Jmu(Sym pos) {
@@ -206,10 +349,28 @@ Op Q1bar(Sym pos) {
   return q1;
 }
 
+Op Q2_unmixed(Sym pos) { // after using Fierz symmetry  (bar{s} gamma_L u) (bar{u} gamma_L d)
+  Op q2;
+  q2.resize(1);
+
+  Sym c1 = get_color(), c2 = get_color();
+  Sym s1 = get_spin(), s2 = get_spin(), s3 = get_spin(), s4 = get_spin();
+
+  Term &term1 = q2[0];
+  term1.coef = 1.;
+  term1.resize(6);
+  term1[0] = Elem(Sym::sBar, pos, c1, s1);
+  term1[1] = Elem(Sym::gL, {s1, s2});
+  term1[2] = Elem(Sym::u, pos, c1, s2);
+
+  term1[3] = Elem(Sym::uBar, pos, c2, s3);
+  term1[4] = Elem(Sym::gL, {s3, s4});
+  term1[5] = Elem(Sym::d, pos, c2, s4);
+  return q2;
+}
 
 
-
-Op Q2(Sym pos) {
+Op Q2_mixed(Sym pos) {  // without using Fierz symmetry // (bar{s} gamma_L d)_{c1,c2} (bar{u} gamma_L u)_{c2,c1}
   Op q2;
   q2.resize(1);
 
@@ -229,8 +390,29 @@ Op Q2(Sym pos) {
   return q2;
 }
 
+Op Q2bar_unmixed(Sym pos) {
+  Op q2;
+  q2.resize(1);
 
-Op Q2bar(Sym pos) {
+  Sym c1 = get_color(), c2 = get_color();
+  Sym s1 = get_spin(), s2 = get_spin(), s3 = get_spin(), s4 = get_spin();
+
+  Term &term1 = q2[0];
+  term1.coef = 1.;
+  term1.resize(6);
+  term1[0] = Elem(Sym::dBar, pos, c1, s1);
+  term1[1] = Elem(Sym::gL, {s1, s2});
+  term1[2] = Elem(Sym::u, pos, c1, s2);
+
+  term1[3] = Elem(Sym::uBar, pos, c2, s3);
+  term1[4] = Elem(Sym::gL, {s3, s4});
+  term1[5] = Elem(Sym::s, pos, c2, s4);
+  return q2;
+}
+
+
+
+Op Q2bar_mixed(Sym pos) {
   Op q2;
   q2.resize(1);
 
@@ -249,6 +431,7 @@ Op Q2bar(Sym pos) {
   term1[5] = Elem(Sym::u, pos, c1, s4);
   return q2;
 }
+
 
 
 
